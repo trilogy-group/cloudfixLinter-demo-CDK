@@ -1,6 +1,6 @@
 tasks:
 - name: "Setup"    
-  before: |
+  command: |
     Arch=$(uname -m)
     if [[ "$Arch" == "x86_64" || "$Arch" == "amd64" ]]; then
         PLATFORM=linux_amd64
@@ -10,9 +10,7 @@ tasks:
         echo "Unsupported platform"
         exit 1
     fi
-    echo ""
-  command: |
-    
+    echo "" 
     CURRENT_VERSION=$(curl -Ls https://api.github.com/repos/Versent/saml2aws/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
     wget -c https://github.com/Versent/saml2aws/releases/download/v${CURRENT_VERSION}/saml2aws_${CURRENT_VERSION}_${PLATFORM}.tar.gz -O - | tar -xzv -C ~/.local/bin
     chmod u+x ~/.local/bin/saml2aws
@@ -21,3 +19,4 @@ tasks:
 vscode:
   extensions:
     - "devfactory.cloudfix-linter"
+    - "eamodio.gitlens"

@@ -8,14 +8,14 @@ import { Tags } from 'aws-cdk-lib';
 const app = new cdk.App();
 const stack = new cdkProjectStack(app, 'CfDemoStack', {
   env:{
-    account:'269164092502',
-    region:'us-east-1'
+    account:'',
+    region:''
   }
 });
 const stack2 = new cdk_project_stack2(app, 'CDKDemoStack2', {
   env:{
-    account:'269164092502',
-    region:'us-east-1'
+    account:'',
+    region:''
   }
 });
 Tags.of(stack).add("Owner", "ankush.pandey@trilogy.com");

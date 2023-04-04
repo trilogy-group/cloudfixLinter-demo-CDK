@@ -5,6 +5,11 @@ Demo repository to test cloudfix-linter for cdk
 
 1. Install Cloudfix linter extension from [here](https://open-vsx.trilogy.devspaces.com/extension/devfactory/cloudfix-linter). Extension gets installed on its own on Devspaces.
 
+## Setting up Demo repo 
+1.  Set the account and region [here](https://github.com/trilogy-group/cloudfixLinter-demo-CDK/blob/prepare-demo%231/bin/cdk-project.ts)
+
+2. Change the VPC-id ,subnet-id and route-gateways as per your AWS Account
+
 ## Steps for demo
 
 1. Install the node_modules for the CDK project

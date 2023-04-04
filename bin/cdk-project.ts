@@ -2,9 +2,8 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { cdkProjectStack } from '../lib/cdk-project-stack';
-import {cdk_project_stack2} from '../lib/cdk-project-stack2'
+import {cdkProjectSimpleResources} from '../lib/cdk-project-stack2'
 import { Tags } from 'aws-cdk-lib';
-// import {ACCOUNT_ID,REGION} from '../lib/constants'
 const app = new cdk.App();
 const stack = new cdkProjectStack(app, 'CfDemoStack', {
 
@@ -13,7 +12,7 @@ const stack = new cdkProjectStack(app, 'CfDemoStack', {
     region:process.env.REGION
   }
 });
-const stack2 = new cdk_project_stack2(app, 'CDKDemoStack2', {
+const stack2 = new cdkProjectSimpleResources(app, 'CDKDemoStack2', {
   env:{
     account:process.env.ACCOUNT_ID,
     region:process.env.REGION

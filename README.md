@@ -3,7 +3,7 @@ Demo repository to test cloudfix-linter for cdk
 
 ## Prerequisite
 
-1. Install Cloudfix linter extension from [here](https://open-vsx.trilogy.devspaces.com/extension/devfactory/cloudfix-linter). Extension installs on its own on Devspaces.
+1. Install Cloudfix linter extension from [here](https://open-vsx.trilogy.devspaces.com/extension/devfactory/cloudfix-linter). Extension installs this on its own on Devspaces.
 
 ## Steps for demo
 

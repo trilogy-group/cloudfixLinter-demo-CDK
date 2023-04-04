@@ -5,7 +5,7 @@ import { cdkProjectStack } from '../lib/cdk-project-stack';
 import {cdkProjectSimpleResources} from '../lib/cdk-project-stack2'
 import { Tags } from 'aws-cdk-lib';
 const app = new cdk.App();
-const stack = new cdkProjectStack(app, 'CfDemoStack', {
+const stack = new cdkProjectStack(app, 'CDKDemoStack', {
 
   env:{
     account:process.env.ACCOUNT_ID,

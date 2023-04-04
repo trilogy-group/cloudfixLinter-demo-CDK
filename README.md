@@ -29,10 +29,14 @@ Demo repository to test cloudfix-linter for cdk
     1. Go to VS Code settings
     2. Search `cloudfix-liinter`
     3. Enter the profile in `AWS Profile` setting
-4. Specify the region for profile chosen (default is `default`):
-    1. Go to VS Code settings
-    2. Search `cloudfix-liinter`
-    3. Enter the region in `Aws Profile` setting
+
+4. Region set up   
+   - The region for profile (chosen in the last step) should also be set to the region where the stack(s) exists. Use the command `aws configure`. Following is an example of setting the region to `us-east-1`
+      ```
+      AWS Access Key ID [****************H44M]: 
+      AWS Secret Access Key [****************9jFj]: 
+      Default region name [None]: us-east-1
+      Default output format [None]:
 
 5. This CDK project has 2 stacks, deploy them (if not done already)
     ```

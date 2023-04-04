@@ -27,7 +27,7 @@ Demo repository to test cloudfix-linter for cdk
 
 3. Select the AWS profile with which AWS was logged in:
     1. Go to VS Code settings
-    2. Search `cloudfix-liinter`
+    2. Search `cloudfix-linter`
     3. Enter the profile in `AWS Profile` setting
 
 4. Region set up   

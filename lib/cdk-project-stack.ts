@@ -7,7 +7,7 @@ import { aws_efs as efs, aws_s3 as s3 } from 'aws-cdk-lib';
 import { EbsDeviceVolumeType, SubnetType, Vpc } from 'aws-cdk-lib/aws-ec2';
 import { BucketEncryption } from 'aws-cdk-lib/aws-s3';
 import * as cdk from 'aws-cdk-lib';
-import {VPC_CIDR_BLOCK,AMI_ID,REGION, SUBNET_ID, AVAILABILITY_ZONES} from '../lib/constants'
+import {VPC_CIDR_BLOCK,AMI_ID,REGION, AVAILABILITY_ZONES} from '../lib/constants'
 export class cdkProjectStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);

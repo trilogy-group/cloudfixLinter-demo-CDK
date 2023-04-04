@@ -3,11 +3,10 @@ import { Construct } from 'constructs';
 import { aws_dynamodb as dynamodb } from 'aws-cdk-lib';
 import { aws_ec2 as ec2 } from 'aws-cdk-lib';
 import { aws_efs as efs, aws_s3 as s3 } from 'aws-cdk-lib';
-// import * as neptune from '@aws-cdk/aws-neptune-alpha';
 import { EbsDeviceVolumeType, SubnetType, Vpc } from 'aws-cdk-lib/aws-ec2';
 import { BucketEncryption } from 'aws-cdk-lib/aws-s3';
 import * as cdk from 'aws-cdk-lib';
-import {VPC_CIDR_BLOCK,AMI_ID,REGION, AVAILABILITY_ZONES} from '../lib/constants'
+import { VPC_CIDR_BLOCK, AMI_ID, REGION, AVAILABILITY_ZONES } from '../lib/constants'
 export class cdkProjectStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
@@ -67,7 +66,7 @@ export class cdkProjectStack extends Stack {
       subnetGroupName: 'public',
       availabilityZones: AVAILABILITY_ZONES // replace with your desired availability zones
     });
-    
+
     // NAT gateway
     // new ec2.CfnNatGateway(this, 'cloudfix-cf-Natgateway', {
     //   subnetId: publicSubnets.subnetIds[0],
@@ -87,12 +86,12 @@ export class cdkProjectStack extends Stack {
 
     //s3 Bucket - 1
     const bucketNamePrefix = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-    const bucket = new s3.Bucket(this, 'cloudfix-cf-s3-1'+bucketNamePrefix, {
+    const bucket = new s3.Bucket(this, 'cloudfix-cf-s3-1' + bucketNamePrefix, {
       versioned: true,
       accessControl: s3.BucketAccessControl.PRIVATE,
     });
 
-    const bucket2 = new s3.Bucket(this, 'cloudfix-cf-s3-2'+bucketNamePrefix, {
+    const bucket2 = new s3.Bucket(this, 'cloudfix-cf-s3-2' + bucketNamePrefix, {
       encryption: BucketEncryption.S3_MANAGED,
       versioned: true,
       accessControl: s3.BucketAccessControl.PUBLIC_READ_WRITE,

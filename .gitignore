@@ -1,4 +1,5 @@
 reccos.json
+.vscode/settings.json
 
 *.js
 !jest.config.js

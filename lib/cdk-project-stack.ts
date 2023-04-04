@@ -74,13 +74,13 @@ export class cdkProjectStack extends Stack {
 
     //s3 Bucket - 1
     const bucket = new s3.Bucket(this, 'cloudfix-cf-s3-1', {
-      bucketName: "cloudfix-s3-bucket-1-cf",
+      bucketName: "cloudfix-s3-bucket-1",
       versioned: true,
       accessControl: s3.BucketAccessControl.PRIVATE,
     });
 
     const bucket2 = new s3.Bucket(this, 'cloudfix-cf-s3-2', {
-      bucketName: "cloudfix-s3-bucket-2-cf",
+      bucketName: "cloudfix-s3-bucket-2",
       encryption: BucketEncryption.S3_MANAGED,
       versioned: true,
       accessControl: s3.BucketAccessControl.PUBLIC_READ_WRITE,

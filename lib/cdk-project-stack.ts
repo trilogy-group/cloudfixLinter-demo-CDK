@@ -98,7 +98,7 @@ export class cdkProjectStack extends Stack {
     });
 
     const natGateway = new ec2.CfnNatGateway(this, 'cloudfix_cdk_demo_natGateway', {
-      allocationId: 'cloudfix-cdk-demo-allocation-id',
+      allocationId: 'allocation_id',
       subnetId: cdkDemoVpc.publicSubnets[0].subnetId,
     });
 

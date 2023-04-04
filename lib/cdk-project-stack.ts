@@ -14,20 +14,20 @@ export class cdkProjectStack extends Stack {
 
 
     //DynamoDB table 
-    const table = new dynamodb.Table(this, 'cloudfixlinter-cdk', {
+    const table = new dynamodb.Table(this, 'cloudfixlinter-cf', {
       partitionKey: { name: 'id', type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     });
 
     //Ebs vol
-    const volume = new ec2.Volume(this, 'cloudfix-cdk-DataVolume', {
+    const volume = new ec2.Volume(this, 'cloudfix-cf-DataVolume', {
       availabilityZone: 'us-east-1a',
       size: Size.gibibytes(10),
       volumeType: EbsDeviceVolumeType.GENERAL_PURPOSE_SSD,
     })
 
     // vpc 
-    const DefaultVpc = Vpc.fromVpcAttributes(this, 'cloudfix-cdk-vpcdev', {
+    const DefaultVpc = Vpc.fromVpcAttributes(this, 'cloudfix-cf-vpcdev', {
       vpcId: 'vpc-02badd8abb988e06e',
       availabilityZones: ['us-east-1a'],
       privateSubnetIds: ['subnet-0a1186feed91f0165'],
@@ -37,7 +37,7 @@ export class cdkProjectStack extends Stack {
     });
 
     // EC2 instance - 1
-    const instance = new ec2.Instance(this, 'cloudfix-cdk-AppServer', {
+    const instance = new ec2.Instance(this, 'cloudfix-cf-AppServer', {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       machineImage: ec2.MachineImage.latestAmazonLinux({
         generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
@@ -46,7 +46,7 @@ export class cdkProjectStack extends Stack {
     });
 
     //Ec2 instance - 2
-    new ec2.Instance(this, `cloudfix-cdk-instance-appserver`, {
+    new ec2.Instance(this, `cloudfix-cf-instance-appserver`, {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       machineImage: new ec2.GenericLinuxImage({
         'us-east-1': 'ami-09d56f8956ab235b3',
@@ -56,14 +56,14 @@ export class cdkProjectStack extends Stack {
     });
 
     // NAT gateway
-    new ec2.CfnNatGateway(this, 'cloudfix-cdk-Natgateway', {
+    new ec2.CfnNatGateway(this, 'cloudfix-cf-Natgateway', {
       subnetId: 'subnet-0ad82a9a46e5aaf68',
       // the properties below are optional
       connectivityType: 'private',
     });
 
     // VPC endpoint
-    new ec2.GatewayVpcEndpoint(this, 'cloudfix-cdk-MyVpcEndpoint', {
+    new ec2.GatewayVpcEndpoint(this, 'cloudfix-cf-MyVpcEndpoint', {
       service: { name: 'com.amazonaws.us-east-1.s3' },
       vpc: DefaultVpc,
       subnets: [
@@ -73,21 +73,21 @@ export class cdkProjectStack extends Stack {
     });
 
     //s3 Bucket - 1
-    const bucket = new s3.Bucket(this, 'cloudfix-cdk-s3-1', {
-      bucketName: "cloudfix-s3-bucket-1-cdk",
+    const bucket = new s3.Bucket(this, 'cloudfix-cf-s3-1', {
+      bucketName: "cloudfix-s3-bucket-1-cf",
       versioned: true,
       accessControl: s3.BucketAccessControl.PRIVATE,
     });
 
-    const bucket2 = new s3.Bucket(this, 'cloudfix-cdk-s3-2', {
-      bucketName: "cloudfix-s3-bucket-2-cdk",
+    const bucket2 = new s3.Bucket(this, 'cloudfix-cf-s3-2', {
+      bucketName: "cloudfix-s3-bucket-2-cf",
       encryption: BucketEncryption.S3_MANAGED,
       versioned: true,
       accessControl: s3.BucketAccessControl.PUBLIC_READ_WRITE,
     });
 
     // EFS file system
-    new efs.FileSystem(this, 'cloudfix-cdk-MyFileSystem', {
+    new efs.FileSystem(this, 'cloudfix-cf-MyFileSystem', {
       vpc: DefaultVpc,
       encrypted: true,
     });

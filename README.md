@@ -51,13 +51,7 @@ Demo repository to test cloudfix-linter for cdk
     - To export  `ACCOUNT_ID` and `REGION` as env vars
     run 
     ```
-    export ACCOUNT_ID=YOUR_AWS_ACCOUNT_ID
-    export REGION=us-eat-1
-    ```
-    and 
-    
-    ```
-    cdk deploy --all
+    export ACCOUNT_ID=YOUR_AWS_ACCOUNT_ID; export REGION=us-east-1;cdk deploy --all
     ```
     **Note : - For demo purpose we have already deployed both the stacks (CfDemoStack, CDKDemoStack2) in Q3 of TrilogyAccount. You can skip this step if you have logged in to the mentioned account.**
 6. Run the following command to generate reccos

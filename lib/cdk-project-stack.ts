@@ -27,7 +27,7 @@ export class cdkProjectStack extends Stack {
     })
 
     // vpc 
-    const DefaultVpc = new Vpc(this, 'MyVpc', {
+    const myVpc = new Vpc(this, 'MyVpc', {
       cidr: VPC_CIDR_BLOCK,
       maxAzs: 2,
       subnetConfiguration: [
@@ -50,7 +50,7 @@ export class cdkProjectStack extends Stack {
       machineImage: ec2.MachineImage.latestAmazonLinux({
         generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
       }),
-      vpc: DefaultVpc
+      vpc: myVpc
     });
 
     //Ec2 instance - 2
@@ -63,7 +63,7 @@ export class cdkProjectStack extends Stack {
     //   }
     // });
 
-    const publicSubnets = DefaultVpc.selectSubnets({
+    const publicSubnets = myVpc.selectSubnets({
       subnetGroupName: 'public',
       availabilityZones: AVAILABILITY_ZONES // replace with your desired availability zones
     });
@@ -78,7 +78,7 @@ export class cdkProjectStack extends Stack {
     // VPC endpoint
     new ec2.GatewayVpcEndpoint(this, 'cloudfix-cf-MyVpcEndpoint', {
       service: { name: 'com.amazonaws.us-east-1.s3' },
-      vpc: DefaultVpc,
+      vpc: myVpc,
       subnets: [
         { subnetType: ec2.SubnetType.PUBLIC }
       ],
@@ -101,7 +101,7 @@ export class cdkProjectStack extends Stack {
 
     // EFS file system
     new efs.FileSystem(this, 'cloudfix-cf-MyFileSystem', {
-      vpc: DefaultVpc,
+      vpc: myVpc,
       encrypted: true,
     });
 

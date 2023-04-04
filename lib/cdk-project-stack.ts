@@ -7,7 +7,7 @@ import { aws_efs as efs, aws_s3 as s3 } from 'aws-cdk-lib';
 import { EbsDeviceVolumeType, SubnetType, Vpc } from 'aws-cdk-lib/aws-ec2';
 import { BucketEncryption } from 'aws-cdk-lib/aws-s3';
 import * as cdk from 'aws-cdk-lib';
-
+import {VPC_CIDR_BLOCK,AMI_ID,REGION, SUBNET_ID, AVAILABILITY_ZONES} from '../lib/constants'
 export class cdkProjectStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
@@ -27,13 +27,21 @@ export class cdkProjectStack extends Stack {
     })
 
     // vpc 
-    const DefaultVpc = Vpc.fromVpcAttributes(this, 'cloudfix-cf-vpcdev', {
-      vpcId: 'vpc-02badd8abb988e06e',
-      availabilityZones: ['us-east-1a'],
-      privateSubnetIds: ['subnet-0a1186feed91f0165'],
-      publicSubnetIds: ['subnet-0c53c3bc75d9b66b2', 'subnet-0ad82a9a46e5aaf68'],
-      publicSubnetRouteTableIds: ['rtb-055316860c9497d01', 'rtb-08f90b2a360aeb299'],
-      privateSubnetRouteTableIds: ['rtb-08f90b2a360aeb299']
+    const DefaultVpc = new Vpc(this, 'MyVpc', {
+      cidr: VPC_CIDR_BLOCK,
+      maxAzs: 2,
+      subnetConfiguration: [
+        {
+          name: 'public',
+          subnetType: SubnetType.PUBLIC,
+          cidrMask: 24
+        },
+        {
+          name: 'private',
+          subnetType: SubnetType.PRIVATE_ISOLATED,
+          cidrMask: 24
+        }
+      ]
     });
 
     // EC2 instance - 1
@@ -46,21 +54,26 @@ export class cdkProjectStack extends Stack {
     });
 
     //Ec2 instance - 2
-    new ec2.Instance(this, `cloudfix-cf-instance-appserver`, {
-      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-      machineImage: new ec2.GenericLinuxImage({
-        'us-east-1': 'ami-09d56f8956ab235b3',
-      }),
-      vpc: DefaultVpc,
+    // new ec2.Instance(this, `cloudfix-cf-instance-appserver`, {
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+    //   machineImage: new ec2.GenericLinuxImage(amiMap: {
+    //     [region: string]: string
+    //   }),{
+    //   vpc: DefaultVpc,
+    //   }
+    // });
 
+    const publicSubnets = DefaultVpc.selectSubnets({
+      subnetGroupName: 'public',
+      availabilityZones: AVAILABILITY_ZONES // replace with your desired availability zones
     });
-
+    
     // NAT gateway
-    new ec2.CfnNatGateway(this, 'cloudfix-cf-Natgateway', {
-      subnetId: 'subnet-0ad82a9a46e5aaf68',
-      // the properties below are optional
-      connectivityType: 'private',
-    });
+    // new ec2.CfnNatGateway(this, 'cloudfix-cf-Natgateway', {
+    //   subnetId: publicSubnets.subnetIds[0],
+    //   // the properties below are optional
+    //   connectivityType: 'private',
+    // });
 
     // VPC endpoint
     new ec2.GatewayVpcEndpoint(this, 'cloudfix-cf-MyVpcEndpoint', {

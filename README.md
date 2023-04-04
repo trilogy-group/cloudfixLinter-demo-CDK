@@ -3,7 +3,7 @@ Demo repository to test cloudfix-linter for cdk
 
 ## Prerequisite
 
-1. Install Cloudfix linter extension from [here](https://open-vsx.trilogy.devspaces.com/extension/devfactory/cloudfix-linter). Extension installs on its own on Devspaces.
+1. Install Cloudfix linter extension from [here](https://open-vsx.trilogy.devspaces.com/extension/devfactory/cloudfix-linter). Extension gets installed on its own on Devspaces.
 
 ## Steps for demo
 
@@ -27,7 +27,7 @@ Demo repository to test cloudfix-linter for cdk
 
 3. Select the AWS profile with which AWS was logged in:
     1. Go to VS Code settings
-    2. Search `cloudfix-liinter`
+    2. Search `cloudfix-linter`
     3. Enter the profile in `AWS Profile` setting
 
 4. Region set up   
@@ -49,7 +49,7 @@ Demo repository to test cloudfix-linter for cdk
     ```
 7. Use mock cloudfix responses:
     1. Go to VS Code settings
-    2. Search `cloudfix-liinter`
+    2. Search `cloudfix-linter`
     3. Check `Override Cloud Fix Results For Testing`
 8. Run (this is a temporary step, it'll be removed in future releases)
     ```

@@ -18,7 +18,5 @@ const stack2 = new cdk_project_stack2(app, 'CDKDemoStack2', {
     region:REGION
   }
 });
-Tags.of(stack).add("Owner", "ankush.pandey@trilogy.com");
-Tags.of(stack).add("Project","cloudfix-linter-cdk");
-Tags.of(stack2).add("Owner", "ankush.pandey@trilogy.com");
+Tags.of(stack).add("Project", "cloudfix-linter-cdk");
 Tags.of(stack2).add("Project","cloudfix-linter-cdk");

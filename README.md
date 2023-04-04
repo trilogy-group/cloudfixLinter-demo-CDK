@@ -46,10 +46,16 @@ Demo repository to test cloudfix-linter for cdk
       Default region name [None]: us-east-1
       Default output format [None]:
 
-5. This CDK project has 2 stacks, deploy them (if not done already)
-    ###NOTE- Please ensure that you have exported the `ACCOUNT_ID` and `REGION` as env vars before deploying resources.
-    ### To export  `ACCOUNT_ID` and `REGION` as env vars
+5. This CDK project has 2 stacks, deploy them (if not done already)   
+    ### NOTE- Please ensure that you have exported the `ACCOUNT_ID` and `REGION` as env vars before deploying resources.
+    - To export  `ACCOUNT_ID` and `REGION` as env vars
     run 
+    ```
+    export ACCOUNT_ID=YOUR_AWS_ACCOUNT_ID
+    export REGION=us-eat-1
+    ```
+    and 
+    
     ```
     cdk deploy --all
     ```

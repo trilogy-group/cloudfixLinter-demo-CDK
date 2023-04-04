@@ -6,7 +6,7 @@ import {cdk_project_stack2} from '../lib/cdk-project-stack2'
 import { Tags } from 'aws-cdk-lib';
 
 const app = new cdk.App();
-const stack = new cdkProjectStack(app, 'CfDemoStack', {
+const stack = new cdkProjectStack(app, 'CDKDemoStack', {
   env:{
     account:'269164092502',
     region:'us-east-1'

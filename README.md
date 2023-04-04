@@ -49,7 +49,7 @@ Demo repository to test cloudfix-linter for cdk
     ```
 7. Use mock cloudfix responses:
     1. Go to VS Code settings
-    2. Search `cloudfix-liinter`
+    2. Search `cloudfix-linter`
     3. Check `Override Cloud Fix Results For Testing`
 8. Run (this is a temporary step, it'll be removed in future releases)
     ```

@@ -13,20 +13,20 @@ export class cdkProjectStack extends Stack {
 
 
     //DynamoDB table 
-    const table = new dynamodb.Table(this, 'cloudfixlinter-cf', {
+    new dynamodb.Table(this, 'cloudfixlinter-cdk-demo-DynamoDBTable', {
       partitionKey: { name: 'id', type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     });
 
     //Ebs vol
-    const volume = new ec2.Volume(this, 'cloudfix-cf-DataVolume', {
+    const volume = new ec2.Volume(this, 'cloudfix-cdk-demo-DataVolume', {
       availabilityZone: 'us-east-1a',
       size: Size.gibibytes(10),
       volumeType: EbsDeviceVolumeType.GENERAL_PURPOSE_SSD,
     })
 
     // vpc 
-    const myVpc = new Vpc(this, 'MyVpc', {
+    const myVpc = new Vpc(this, 'cloudfix-cdk-demo-vpc', {
       cidr: VPC_CIDR_BLOCK,
       maxAzs: 2,
       subnetConfiguration: [
@@ -44,7 +44,7 @@ export class cdkProjectStack extends Stack {
     });
 
     // EC2 instance - 1
-    const instance = new ec2.Instance(this, 'cloudfix-cf-AppServer', {
+    const instance = new ec2.Instance(this, 'cloudfix-cdk-demo-AppServer', {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       machineImage: ec2.MachineImage.latestAmazonLinux({
         generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
@@ -52,30 +52,14 @@ export class cdkProjectStack extends Stack {
       vpc: myVpc
     });
 
-    //Ec2 instance - 2
-    // new ec2.Instance(this, `cloudfix-cf-instance-appserver`, {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: new ec2.GenericLinuxImage(amiMap: {
-    //     [region: string]: string
-    //   }),{
-    //   vpc: DefaultVpc,
-    //   }
-    // });
-
     const publicSubnets = myVpc.selectSubnets({
       subnetGroupName: 'public',
       availabilityZones: AVAILABILITY_ZONES // replace with your desired availability zones
     });
 
-    // NAT gateway
-    // new ec2.CfnNatGateway(this, 'cloudfix-cf-Natgateway', {
-    //   subnetId: publicSubnets.subnetIds[0],
-    //   // the properties below are optional
-    //   connectivityType: 'private',
-    // });
 
     // VPC endpoint
-    new ec2.GatewayVpcEndpoint(this, 'cloudfix-cf-MyVpcEndpoint', {
+    new ec2.GatewayVpcEndpoint(this, 'cloudfix-cdk-demo-VpcEndpoint', {
       service: { name: 'com.amazonaws.us-east-1.s3' },
       vpc: myVpc,
       subnets: [
@@ -86,19 +70,19 @@ export class cdkProjectStack extends Stack {
 
     //s3 Bucket - 1
     const bucketNamePrefix = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-    const bucket = new s3.Bucket(this, 'cloudfix-cf-s3-1' + bucketNamePrefix, {
+    new s3.Bucket(this, 'cloudfix-cdk-demo-s3bucket1' + bucketNamePrefix, {
       versioned: true,
       accessControl: s3.BucketAccessControl.PRIVATE,
     });
 
-    const bucket2 = new s3.Bucket(this, 'cloudfix-cf-s3-2' + bucketNamePrefix, {
+    new s3.Bucket(this, 'cloudfix-cdk-demo-s3Bucket-2' + bucketNamePrefix, {
       encryption: BucketEncryption.S3_MANAGED,
       versioned: true,
       accessControl: s3.BucketAccessControl.PUBLIC_READ_WRITE,
     });
 
     // EFS file system
-    new efs.FileSystem(this, 'cloudfix-cf-MyFileSystem', {
+    new efs.FileSystem(this, 'cloudfix-cdk-demo-FileSystem', {
       vpc: myVpc,
       encrypted: true,
     });
@@ -120,6 +104,23 @@ export class cdkProjectStack extends Stack {
     //   vpcSubnets:{
     //     subnetType: SubnetType.PUBLIC 
     //   }
+    // });
+
+    //Ec2 instance - 2
+    // new ec2.Instance(this, `cloudfix-cf-instance-appserver`, {
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+    //   machineImage: new ec2.GenericLinuxImage(amiMap: {
+    //     [region: string]: string
+    //   }),{
+    //   vpc: DefaultVpc,
+    //   }
+    // });
+
+    // NAT gateway
+    // new ec2.CfnNatGateway(this, 'cloudfix-cf-Natgateway', {
+    //   subnetId: publicSubnets.subnetIds[0],
+    //   // the properties below are optional
+    //   connectivityType: 'private',
     // });
 
 

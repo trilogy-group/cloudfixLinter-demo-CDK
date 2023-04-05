@@ -58,7 +58,7 @@ Demo repository to test cloudfix-linter for cdk
     export ACCOUNT_ID=<YOUR_AWS_ACCOUNT_ID>; export REGION=us-east-1;cdk deploy --all --output .cdkout
     ```
     **Note :-**    
-       1. This will create .cdkout folder in your working directory with all the output from cdk deployment**
+       1. This will create .cdkout folder in your working directory with all the output from cdk deployment  
        2. For demo purpose we have already deployed both the stacks (CfDemoStack, CDKDemoStack2) in Q3 of TrilogyAccount. You can skip this step if you have logged in to the mentioned account.
     
 6. Run the following command to generate reccos

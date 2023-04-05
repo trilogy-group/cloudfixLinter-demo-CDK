@@ -97,36 +97,15 @@ export class cdkProjectStack extends Stack {
       }
     });
 
-    const natGateway = new ec2.CfnNatGateway(this, 'cloudfix_cdk_demo_natGateway', {
-      allocationId: 'allocation_id',
-      subnetId: cdkDemoVpc.publicSubnets[0].subnetId,
+    // Allocate an Elastic IP address in the same VPC
+    const eip = new ec2.CfnEIP(this, 'MyEIP', {
+      domain: 'cdkDemoVpc',
     });
-
-    //aws_s3_bucket_public_access_block
-
-    //aws_s3_bucket_versioningterraforte
-
-    //neptune DBCluster
-    // const cluster = new neptune.DatabaseCluster(this, 'cloufix-cf-MyCluster', {
-    //   instanceType: neptune.InstanceType.R5_LARGE,
-    //   vpc: DefaultVpc,
-    //   removalPolicy: cdk.RemovalPolicy.DESTROY,
-    //   port: 8182,
-    //   iamAuthentication: true,
-    //   backupRetention: cdk.Duration.days(7),
-    //   preferredBackupWindow: '03:00-04:00',
-    //   vpcSubnets:{
-    //     subnetType: SubnetType.PUBLIC 
-    //   }
-    // });
-
-    // NAT gateway
-    // new ec2.CfnNatGateway(this, 'cloudfix-cf-Natgateway', {
-    //   subnetId: publicSubnets.subnetIds[0],
-    //   // the properties below are optional
-    //   connectivityType: 'private',
-    // });
-
+    
+    const natGateway = new ec2.CfnNatGateway(this, 'cloudfix_cdk_demo_natGateway', {
+      allocationId:eip.attrAllocationId,
+        subnetId: cdkDemoVpc.publicSubnets[0].subnetId,
+    });
 
   }
 }

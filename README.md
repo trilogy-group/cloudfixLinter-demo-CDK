@@ -94,13 +94,13 @@ In order to generate mock recommnedations and tell the linter that it needs to r
     - Windows -
     ```
     $env:CLOUDFIX_FILE=$true
-   python utils/gen_recco.py cdkProjectStack cdkProjectSimpleResources
+   python utils/gen_recco.py CdkStackmain CdkSimpleResourcesStackmain
     ```
     - Linux and Devspaces -
 
     ```
     export CLOUDFIX_FILE=true
-    python utils/gen_recco.py cdkProjectStack cdkProjectSimpleResources
+    python utils/gen_recco.py CdkStackmain CdkSimpleResourcesStackmain
     ```
 
     #### To use cloudFix recommendations

@@ -63,15 +63,6 @@ export class CdkProjectStack extends Stack {
       connectivityType: 'private',
     });
 
-    // VPC endpoint
-    new ec2.GatewayVpcEndpoint(this, 'cloudfix-cdk-demo-MyVpcEndpoint', {
-      service: { name: 'com.amazonaws.us-east-1.s3' },
-      vpc: DefaultVpc,
-      subnets: [
-        { subnetType: ec2.SubnetType.PRIVATE_WITH_NAT }
-      ],
-
-    });
 
     const bucketNamePrefix = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
     //s3 Bucket - 1

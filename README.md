@@ -81,12 +81,12 @@ Demo repository to test cloudfix-linter for cdk
       ```
     Note: In the following commands replce `cloudfix-linter` with `cloudfix-linter.exe` for windows
 
-3. Run
+3. To check if path to cloudfix-linter has been set that succesfully, Run -
 
    ```
    cloudfix-linter --help  
    ```  
-   This will ensure that path to cloudfix-linter has been set  
+   
 **Note - If you don't want to set path variable to cloudfix-linter cli. You can use the cli by going inside ~/.cloudfix-linter folder and running the same commands as below**
 
 4. To use mock recommendations.

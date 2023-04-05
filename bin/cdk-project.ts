@@ -16,7 +16,7 @@ function envVarsPresent() {
 }
 
 if (!envVarsPresent()) {
-  console.log("ENV VARS ARE NOT SET. Please export ACCOUNT_ID and REGION to deploy stacks")
+  console.log("ENV VARS ARE NOT SET. Please export ACCOUNT_ID and REGION to deploy/synth stacks")
 
 } else {
   const stack = new CdkProjectStack(app, 'CdkStack'+BRANCH_NAME, {

@@ -3,7 +3,7 @@ Demo repository to test cloudfix-linter for cdk
 
 ## Prerequisite
 
-1. Install Cloudfix linter extension from [here](https://github.com/trilogy-group/cloudfixLinter-demo-CDK/blob/prepare-demo%231/lib/constants.ts). Extension gets installed on its own on Devspaces.
+1. Install Cloudfix linter extension from [here](https://open-vsx.trilogy.devspaces.com/extension/devfactory/cloudfix-linter). Extension gets installed on its own on Devspaces.
 
  
 ## Steps to use Repo with Extension
@@ -11,7 +11,7 @@ Demo repository to test cloudfix-linter for cdk
 #### Note : This is to be done if you don't want to create new VPC with each deployment and use the existing VPCs from your aws account.
 
 
-1. Change the value of [these constants](https://github.com/trilogy-group/cloudfixLinter-demo-CDK/blob/withDeployedIDs/lib/constants.ts#:~:text=6-,export,%5D,-Symbols) as per the Ids available in your aws account and deploy the stack.
+1. Change the value of [these constants](lib/constants.ts) as per the Ids available in your aws account and deploy the stack.
 
 
 ## Steps for demo

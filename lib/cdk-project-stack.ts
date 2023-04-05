@@ -9,7 +9,7 @@ import { BucketEncryption } from 'aws-cdk-lib/aws-s3';
 import * as cdk from 'aws-cdk-lib';
 import { AVAILABILITYZONES, PRIVATE_SUBNETIDS, PRIVATE_SUBNET_ROUTETABLEIDS, PUBLIC_SUBNETIDS, PUBLIC_SUBNET_ROUTETABLEIDS, VPC_ID } from './constants';
 
-export class cdkProjectStack extends Stack {
+export class CdkProjectStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 

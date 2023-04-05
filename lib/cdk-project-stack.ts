@@ -76,13 +76,11 @@ export class cdkProjectStack extends Stack {
     const bucketNamePrefix = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
     //s3 Bucket - 1
     const bucket = new s3.Bucket(this, 'cloudfix-cdk-demo-s3-1' + bucketNamePrefix, {
-      bucketName: "cloudfix-s3-bucket-1",
       versioned: true,
       accessControl: s3.BucketAccessControl.PRIVATE,
     });
 
     const bucket2 = new s3.Bucket(this, 'cloudfix-cdk-demo-s3-2' + bucketNamePrefix, {
-      bucketName: "cloudfix-s3-bucket-2",
       encryption: BucketEncryption.S3_MANAGED,
       versioned: true,
       accessControl: s3.BucketAccessControl.PUBLIC_READ_WRITE,

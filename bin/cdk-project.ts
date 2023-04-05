@@ -4,7 +4,7 @@ import * as cdk from 'aws-cdk-lib';
 import { cdkProjectStack } from '../lib/cdk-project-stack';
 import { cdkProjectSimpleResources } from '../lib/cdk-project-stack2'
 import { Tags } from 'aws-cdk-lib';
-import {BRANCH_NAME} from '../lib/constants';
+import { BRANCH_NAME } from '../lib/constants';
 
 const app = new cdk.App();
 function envVarsPresent() {
@@ -21,14 +21,14 @@ if (!envVarsPresent()) {
 
 } else {
 
-  const stack = new cdkProjectStack(app, 'CdkStack'+BRANCH_NAME, {
+  const stack = new CdkProjectStack(app, 'CdkStack' + BRANCH_NAME, {
 
     env: {
       account: process.env.ACCOUNT_ID,
       region: process.env.REGION
     }
   });
-  const stack2 = new cdkProjectSimpleResources(app, 'CdkSimpleResourcesStack'+BRANCH_NAME, {
+  const stack2 = new CdkProjectSimpleResources(app, 'CdkSimpleResourcesStack' + BRANCH_NAME, {
     env: {
       account: process.env.ACCOUNT_ID,
       region: process.env.REGION

@@ -4,8 +4,6 @@ Demo repository to test cloudfix-linter for cdk
 ## Prerequisite
 
 1. Install Cloudfix linter extension from [here](https://github.com/trilogy-group/cloudfixLinter-demo-CDK/blob/prepare-demo%231/lib/constants.ts). Extension gets installed on its own on Devspaces.
-
-2. set ACCOUNT_ID and REGION env vars to deploy the stack. 
  
 
 ## Steps to use Repo with Extension

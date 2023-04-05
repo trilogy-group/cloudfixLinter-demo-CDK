@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { CdkDemoStack } from '../lib/cdk-project-stack';
-import { CdkDemoStack2 } from '../lib/cdk-project-stack2'
+import { cdkProjectStack } from '../lib/cdk-project-stack';
+import { cdkProjectSimpleResources } from '../lib/cdk-project-stack2'
 import { Tags } from 'aws-cdk-lib';
 
 const app = new cdk.App();
@@ -18,13 +18,13 @@ function envVarsPresent() {
 if (!envVarsPresent) {
   console.log("ENV VARS ARE NOT SET. Please export ACCOUNT_ID and REGION to deploy stacks")
 } else {
-  const stack = new CdkDemoStack(app, 'CfDemoStack', {
+  const stack = new cdkProjectStack(app, 'CfDemoStack', {
     env: {
       account: process.env.ACCOUNT_ID,
       region: process.env.REGION
     }
   });
-  const stack2 = new CdkDemoStack2(app, 'CDKDemoStack2', {
+  const stack2 = new cdkProjectSimpleResources(app, 'CDKDemoStack2', {
     env: {
       account: process.env.ACCOUNT_ID,
       region: process.env.REGION

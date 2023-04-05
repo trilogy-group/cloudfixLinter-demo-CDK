@@ -55,7 +55,7 @@ Demo repository to test cloudfix-linter for cdk
     - To export  `ACCOUNT_ID` and `REGION` as env vars and deploy the stack with as per cloudfix-linter
     run 
     ```
-    export ACCOUNT_ID=YOUR_AWS_ACCOUNT_ID; export REGION=us-east-1;cdk deploy --all --output .cdkout
+    export ACCOUNT_ID=<YOUR_AWS_ACCOUNT_ID>; export REGION=us-east-1;cdk deploy --all --output .cdkout
     ```
     **Note :-**    
        1. This will create .cdkout folder in your working directory with all the output from cdk deployment**

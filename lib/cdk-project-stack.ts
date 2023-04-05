@@ -68,7 +68,7 @@ export class CdkProjectStack extends Stack {
       service: { name: 'com.amazonaws.us-east-1.s3' },
       vpc: DefaultVpc,
       subnets: [
-        { subnetType: ec2.SubnetType.PUBLIC }
+        { subnetType: ec2.SubnetType.PRIVATE_WITH_NAT }
       ],
 
     });
@@ -78,12 +78,6 @@ export class CdkProjectStack extends Stack {
     const bucket = new s3.Bucket(this, 'cloudfix-cdk-demo-s3-1' + bucketNamePrefix, {
       versioned: true,
       accessControl: s3.BucketAccessControl.PRIVATE,
-    });
-
-    const bucket2 = new s3.Bucket(this, 'cloudfix-cdk-demo-s3-2' + bucketNamePrefix, {
-      encryption: BucketEncryption.S3_MANAGED,
-      versioned: true,
-      accessControl: s3.BucketAccessControl.PUBLIC_READ_WRITE,
     });
 
     // EFS file system

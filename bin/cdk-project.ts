@@ -18,13 +18,13 @@ if (!envVarsPresent()) {
   console.log("ENV VARS ARE NOT SET. Please export ACCOUNT_ID and REGION to deploy stacks")
 
 } else {
-  const stack = new CdkProjectStack(app, 'CdkStack_DeployedIds', {
+  const stack = new CdkProjectStack(app, 'CdkStack-DeployedIds', {
     env: {
       account: process.env.ACCOUNT_ID,
       region: process.env.REGION
     }
   });
-  const stack2 = new CdkProjectSimpleResources(app, 'CdkSimpleResourcesStack2_DeployedIds', {
+  const stack2 = new CdkProjectSimpleResources(app, 'CdkSimpleResourcesStack2-DeployedIds', {
     env: {
       account: process.env.ACCOUNT_ID,
       region: process.env.REGION

@@ -75,12 +75,6 @@ export class cdkProjectStack extends Stack {
       accessControl: s3.BucketAccessControl.PRIVATE,
     });
 
-    new s3.Bucket(this, 'cloudfix-cdk-demo-s3Bucket-2' + bucketNamePrefix, {
-      encryption: BucketEncryption.S3_MANAGED,
-      versioned: true,
-      accessControl: s3.BucketAccessControl.PUBLIC_READ_WRITE,
-    });
-
     // EFS file system
     new efs.FileSystem(this, 'cloudfix_cdk_demo_FileSystem', {
       vpc: cdkDemoVpc,
@@ -101,10 +95,10 @@ export class cdkProjectStack extends Stack {
     const eip = new ec2.CfnEIP(this, 'MyEIP', {
       domain: 'cdkDemoVpc',
     });
-    
+
     const natGateway = new ec2.CfnNatGateway(this, 'cloudfix_cdk_demo_natGateway', {
-      allocationId:eip.attrAllocationId,
-        subnetId: cdkDemoVpc.publicSubnets[0].subnetId,
+      allocationId: eip.attrAllocationId,
+      subnetId: cdkDemoVpc.publicSubnets[0].subnetId,
     });
 
   }

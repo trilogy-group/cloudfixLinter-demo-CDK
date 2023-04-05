@@ -6,8 +6,6 @@ export class cdkProjectSimpleResources extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
         const s3FirstBucketName = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-        const s3SecondBucketName = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
         const FristBucket = new s3.Bucket(this, "cloudfix-cdk-demo" + "-stack2-s3Bucket-1" + s3FirstBucketName)
-        new s3.Bucket(this, "cloudfix-cdk-demo" + "-stack2-s3Bucket-1" + s3SecondBucketName)
     }
 }

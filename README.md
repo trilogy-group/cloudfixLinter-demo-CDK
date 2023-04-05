@@ -64,7 +64,7 @@ Demo repository to test cloudfix-linter for cdk
 6. Run the following command to generate reccos
 
     ```
-    python utils/gen_recco.py cdkProjectStack cdkProjectSimpleResources
+    python utils/gen_recco.py CdkStackwithDeployedIDs CdkSimpleResourcesStackwithDeployedIDs
     ```
 
 7. Use mock cloudfix responses:
@@ -106,13 +106,13 @@ In order to generate mock recommnedations and tell the linter that it needs to r
     - Windows -
     ```
     $env:CLOUDFIX_FILE=$true
-    python utils/gen_recco.py cdkProjectStack cdkProjectSimpleResources
+    python utils/gen_recco.py CdkStackwithDeployedIDs CdkSimpleResourcesStackwithDeployedIDs
     ```
     - Linux and Devspaces -
 
     ```
     export CLOUDFIX_FILE=true
-    python utils/gen_recco.py cdkProjectStack cdkProjectSimpleResources
+    python utils/gen_recco.py CdkStackwithDeployedIDs CdkSimpleResourcesStackwithDeployedIDs
     ```
 
     #### To use cloudFix recommendations

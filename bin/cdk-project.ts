@@ -25,7 +25,7 @@ if (!envVarsPresent()) {
       region: process.env.REGION
     }
   });
-  const stack2 = new CdkProjectSimpleResources(app, 'CdkSimpleResourcesStack2'+BRANCH_NAME, {
+  const stack2 = new CdkProjectSimpleResources(app, 'CdkSimpleResourcesStack'+BRANCH_NAME, {
     env: {
       account: process.env.ACCOUNT_ID,
       region: process.env.REGION

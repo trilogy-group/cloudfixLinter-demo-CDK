@@ -64,7 +64,7 @@ export class CdkProjectStack extends Stack {
     });
 
     //s3 Bucket - 1
-    const bucket = new s3.Bucket(this, 'cloudfix-cdk-demo-s3-1' + +BRANCH_NAME, {
+    const bucket = new s3.Bucket(this, 'cloudfix-cdk-demo-s3-1' +BRANCH_NAME, {
       versioned: true,
       accessControl: s3.BucketAccessControl.PRIVATE,
     });

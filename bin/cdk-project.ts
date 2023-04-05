@@ -6,19 +6,30 @@ import { CdkDemoStack2 } from '../lib/cdk-project-stack2'
 import { Tags } from 'aws-cdk-lib';
 
 const app = new cdk.App();
-const stack = new CdkDemoStack(app, 'CfDemoStack', {
-  env: {
-    account: '269164092502',
-    region: 'us-east-1'
+
+
+function envVarsPresent() {
+  if (process.env.ACCOUNT_ID === '' || process.env.REGION === '') {
+    return false
   }
-});
-const stack2 = new CdkDemoStack2(app, 'CDKDemoStack2', {
-  env: {
-    account: '269164092502',
-    region: 'us-east-1'
-  }
-});
-Tags.of(stack).add("Owner", "ankush.pandey@trilogy.com");
-Tags.of(stack).add("Project", "cloudfix-linter-cdk");
-Tags.of(stack2).add("Owner", "ankush.pandey@trilogy.com");
-Tags.of(stack2).add("Project", "cloudfix-linter-cdk");
+  return true
+}
+
+if (!envVarsPresent) {
+  console.log("ENV VARS ARE NOT SET. Please export ACCOUNT_ID and REGION to deploy stacks")
+} else {
+  const stack = new CdkDemoStack(app, 'CfDemoStack', {
+    env: {
+      account: process.env.ACCOUNT_ID,
+      region: process.env.REGION
+    }
+  });
+  const stack2 = new CdkDemoStack2(app, 'CDKDemoStack2', {
+    env: {
+      account: process.env.ACCOUNT_ID,
+      region: process.env.REGION
+    }
+  });
+  Tags.of(stack).add("Project", "cloudfix-linter-cdk");
+  Tags.of(stack2).add("Project", "cloudfix-linter-cdk");
+}

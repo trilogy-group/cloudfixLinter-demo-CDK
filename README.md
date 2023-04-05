@@ -52,7 +52,7 @@ Demo repository to test cloudfix-linter for cdk
     
 6. Run the following command to generate reccos
     ```
-    python utils/gen_recco.py cdkProjectStack cdkProjectSimpleResources
+    python utils/gen_recco.py CdkStackmain CdkSimpleResourcesStackmain
     ```
 7. Use mock cloudfix responses:
     1. Go to VS Code settings

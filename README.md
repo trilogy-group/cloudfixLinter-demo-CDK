@@ -8,12 +8,7 @@ Demo repository to test cloudfix-linter for cdk
 2. set ACCOUNT_ID and REGION env vars to deploy the stack. 
  
 
-## Setting up Demo repo 
-1.  Set the account and region [here](https://github.com/trilogy-group/cloudfixLinter-demo-CDK/blob/prepare-demo%231/bin/cdk-project.ts)
-
-2. Change the VPC-id ,subnet-id and route-gateways as per your AWS Account or 
-
-## Steps for demo
+## Steps to use Repo with Extension
 
 1. Install the node_modules for the CDK project
     ```
@@ -47,16 +42,19 @@ Demo repository to test cloudfix-linter for cdk
       Default output format [None]:
 
 5. This CDK project has 2 stacks, deploy them (if not done already)   
-    ### NOTE- Please ensure that you have exported the `ACCOUNT_ID` and `REGION` as env vars before deploying resources.
+    #### NOTE- Please ensure that you have exported the `ACCOUNT_ID` and `REGION` as env vars before deploying resources.
     - To export  `ACCOUNT_ID` and `REGION` as env vars
     run 
     ```
     export ACCOUNT_ID=YOUR_AWS_ACCOUNT_ID; export REGION=us-east-1;cdk deploy --all
     ```
-    **Note : - For demo purpose we have already deployed both the stacks (CfDemoStack, CDKDemoStack2) in Q3 of TrilogyAccount. You can skip this step if you have logged in to the mentioned account.**
+    **Note :-**    
+       1. This will create .cdkout folder in your working directory with all the output from cdk deployment.  
+       2. For demo purpose we have already deployed both the stacks (CfDemoStack, CDKDemoStack2) in Q3 of TrilogyAccount. You can skip this step if you have logged in to the mentioned account.
+    
 6. Run the following command to generate reccos
     ```
-    python utils/gen_recco.py CfDemoStack CDKDemoStack2
+    python utils/gen_recco.py cdkProjectStack cdkProjectSimpleResources
     ```
 7. Use mock cloudfix responses:
     1. Go to VS Code settings
@@ -69,3 +67,68 @@ Demo repository to test cloudfix-linter for cdk
 9. Open one of the typescript files and save it
 
 10. Wait for a few seconds, and the recommendations will show up
+
+
+### Steps to use repo with Cloudfix-linter CLI
+1. Follow the step 1 and step 2 mentioned above
+
+2. Add the binary to `PATH` 
+   1. For linux, macOS, devspaces
+      ```
+      export PATH=$PATH:~/.cloudfix-linter/bin
+      ```
+   2. For Windows
+      ```
+      $Env:PATH += ";${HOME}\.cloudfix-linter\bin"
+      ```
+    Note: In the following commands replce `cloudfix-linter` with `cloudfix-linter.exe` for windows
+
+3. Run
+
+   ```
+   cloudfix-linter --help  
+   ```  
+   This will ensure that path to cloudfix-linter has been set  
+**Note - If you don't want to set path variable to cloudfix-linter cli. You can use the cli by going inside ~/.cloudfix-linter folder and running the same commands as below**
+
+4. To use mock recommendations.
+In order to generate mock recommnedations and tell the linter that it needs to read reccomendations from a file rather than from CloudFix itself, on the terminal run
+    - Windows -
+    ```
+    $env:CLOUDFIX_FILE=$true
+   python utils/gen_recco.py cdkProjectStack cdkProjectSimpleResources
+    ```
+    - Linux and Devspaces -
+
+    ```
+    export CLOUDFIX_FILE=true
+    python utils/gen_recco.py cdkProjectStack cdkProjectSimpleResources
+    ```
+
+    #### To use cloudFix recommendations
+    - Windows
+    ```
+    $env:CLOUDFIX_FILE=$false
+    $env:CLOUDFIX_USERNAME="<MY_USERNAME>"
+    $env:CLOUDFIX_PASSWORD="<PASSWORD>"
+    ```
+    - Linux and Devspaces
+    ```
+    export CLOUDFIX_FILE=false
+    export CLOUDFIX_USERNAME="<MY_USERNAME>"
+    export CLOUDFIX_PASSWORD="<PASSWORD>"
+    ```
+
+5. To generate lintings on the cdk code run 
+    ```
+    cloudfix-linter cdk -reco
+
+    ```
+    or 
+    To get recommendations in json format run
+    ```
+    cloudfix-linter cdk -reco --json
+
+    ```
+
+6. Recommendations will be linted on your Cdk Code.

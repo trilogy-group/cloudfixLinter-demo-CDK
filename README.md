@@ -8,7 +8,7 @@ Demo repository to test cloudfix-linter for cdk
 2. set ACCOUNT_ID and REGION env vars to deploy the stack. 
  
 
-## Setting up Demo repo 
+## Steps to use Repo with Extension
 
 #### Note : This is to be done if you don't want to create new VPC with each deployment and use the existing VPCs from your aws account.
 
@@ -80,7 +80,8 @@ Demo repository to test cloudfix-linter for cdk
 9. Wait for a few seconds, and the recommendations will show up
 
 
-### Steps to use Cloudfix-linter CLI
+### Steps to use repo with Cloudfix-linter CLI
+
 1. Follow the step 1 and step 2 mentioned above
 
 2. Add the binary to `PATH` 

@@ -58,7 +58,7 @@ export class CdkDemoStack extends Stack {
 
     // NAT gateway
     new ec2.CfnNatGateway(this, 'cloudfix-cdk-demo-Natgateway', {
-      subnetId: PRIVATE_SUBNETIDS[1],
+      subnetId: PUBLIC_SUBNETIDS[1],
       // the properties below are optional
       connectivityType: 'private',
     });

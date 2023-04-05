@@ -4,19 +4,19 @@ import * as cdk from 'aws-cdk-lib';
 import { cdkProjectStack } from '../lib/cdk-project-stack';
 import { cdkProjectSimpleResources } from '../lib/cdk-project-stack2'
 import { Tags } from 'aws-cdk-lib';
-
 const app = new cdk.App();
-
-
 function envVarsPresent() {
-  if (process.env.ACCOUNT_ID === '' || process.env.REGION === '') {
+  const accountId = process.env.ACCOUNT_ID
+  const region = process.env.REGION
+  if ((!region && !accountId) || process.env.ACCOUNT_ID === '' || process.env.REGION === '') {
     return false
   }
   return true
 }
 
-if (!envVarsPresent) {
+if (!envVarsPresent()) {
   console.log("ENV VARS ARE NOT SET. Please export ACCOUNT_ID and REGION to deploy stacks")
+
 } else {
   const stack = new cdkProjectStack(app, 'CfDemoStack', {
     env: {

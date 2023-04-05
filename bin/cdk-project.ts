@@ -19,14 +19,14 @@ if (!envVarsPresent()) {
 
 } else {
 
-  const stack = new cdkProjectStack(app, 'CDKDemoStack', {
+  const stack = new cdkProjectStack(app, 'CdkStack', {
 
     env: {
       account: process.env.ACCOUNT_ID,
       region: process.env.REGION
     }
   });
-  const stack2 = new cdkProjectSimpleResources(app, 'CDKDemoStack2', {
+  const stack2 = new cdkProjectSimpleResources(app, 'CdkSimpleResourcesStack2', {
     env: {
       account: process.env.ACCOUNT_ID,
       region: process.env.REGION

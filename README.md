@@ -131,13 +131,13 @@ In order to generate mock recommnedations and tell the linter that it needs to r
 
 5. To generate lintings on the cdk code run 
     ```
-    cloudfix-linter cdk -reco
+    cloudfix-linter cdk reco
 
     ```
     or 
     To get recommendations in json format run
     ```
-    cloudfix-linter cdk -reco --json
+    cloudfix-linter cdk reco --json
 
     ```
 

@@ -15,14 +15,14 @@ function envVarsPresent() {
   return true
 }
 
-if (!envVarsPresent()) {
-  console.log("ENV VARS ARE NOT SET. Please export ACCOUNT_ID and REGION to deploy/synth stacks")
+if (false) {
+  console.log("ENV VARS ARE NOT SET. Please export ACCOUNT_ID and REGION to deploy stacks")
 
 } else {
   const stack = new CdkProjectStack(app, 'CdkStack'+BRANCH_NAME, {
     env: {
-      account: process.env.ACCOUNT_ID,
-      region: process.env.REGION
+      account: process.env.CDK_DEFAULT_ACCOUNT,
+      region: process.env.CDK_DEFAULT_REGION
     }
   });
   const stack2 = new CdkProjectSimpleResources(app, 'CdkSimpleResourcesStack'+BRANCH_NAME, {

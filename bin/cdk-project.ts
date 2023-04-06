@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { cdkProjectStack } from '../lib/cdk-project-stack';
-import { cdkProjectSimpleResources } from '../lib/cdk-project-stack2'
+import { CdkProjectStack } from '../lib/cdk-project-stack';
+import { CdkProjectSimpleResources } from '../lib/cdk-project-stack2'
 import { Tags } from 'aws-cdk-lib';
 import { BRANCH_NAME } from '../lib/constants';
 

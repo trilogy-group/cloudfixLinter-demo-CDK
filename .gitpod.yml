@@ -18,5 +18,5 @@ tasks:
     saml2aws --version
 vscode:
   extensions:
-    - "https://temp.sh/hyBjg/cloudfix-linter-0.0.29.vsix"
+    - "https://open-vsx.trilogy.devspaces.com/api/devfactory/cloudfix-linter/0.0.30/file/devfactory.cloudfix-linter-0.0.30.vsix"
     - "eamodio.gitlens"

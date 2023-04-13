@@ -1,0 +1,25 @@
+{   // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cloudfix-linter CDK Synth",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "/home/gitpod/.nvm/versions/node/v14.17.0/bin/cdk",
+            "args": [
+                "--app",
+                "npx ts-node --prefer-ts-exts bin/cdk-project.ts",
+                "synth",
+                "--output",
+                ".cdkout"
+            ],
+            "env": {
+                "ACCOUNT_ID": "269164092502",
+                "REGION": "us-east-1"
+            }
+        },
+    ]
+}

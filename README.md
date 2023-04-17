@@ -92,12 +92,12 @@ Demo repository to test cloudfix-linter for cdk
       ```
     Note: In the following commands replce `cloudfix-linter` with `cloudfix-linter.exe` for windows
 
-3. Run
+3. To check if path to cloudfix-linter has been set that succesfully, Run -
 
    ```
    cloudfix-linter --help  
    ```  
-   This will ensure that path to cloudfix-linter has been set  
+
 **Note - If you don't want to set path variable to cloudfix-linter cli. You can use the cli by going inside ~/.cloudfix-linter folder and running the same commands as below**
 
 4. To use mock recommendations.
@@ -141,3 +141,38 @@ In order to generate mock recommnedations and tell the linter that it needs to r
     ```
 
 6. Recommendations will be linted on your Cdk Code.
+
+## Setting up launch.json configuration
+
+- `name` should be exactly `Cloudfix-linter CDK Synth`
+- `program` should be the absolute path to the `cdk` CLI. It can be fetched using the command `which cdk`
+- `args` should a similar to what is used for deployment but use `synth` in the place of `deploy`
+- `env` can be specified for specifying env vars that the CDK project needs
+
+Sample
+
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cloudfix-linter CDK Synth",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "/home/gitpod/.nvm/versions/node/v14.17.0/bin/cdk",
+            "args": [
+                "--app",
+                "npx ts-node --prefer-ts-exts bin/cdk-project.ts",
+                "synth",
+                "--output",
+                ".cdkout"
+            ],
+            "env": {
+                "ACCOUNT_ID": "269164092502",
+                "REGION": "us-east-1"
+            }
+        },
+    ]
+}
+```

@@ -72,7 +72,6 @@ Demo repository to test cloudfix-linter for cdk
     2. Search `cloudfix-linter`
     3. Check `Override Cloud Fix Results For Testing`
 
-    ```
 8. Open one of the typescript files and save it
 
 9. Wait for a few seconds, and the recommendations will show up

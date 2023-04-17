@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "program": "/usr/local/bin/cdk",
+            "program": "/home/gitpod/.nvm/versions/node/v14.17.0/bin/cdk",
             "args": [
                 "--app",
                 "npx ts-node --prefer-ts-exts bin/cdk-project.ts",

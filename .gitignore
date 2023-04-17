@@ -115,4 +115,5 @@ dist
 
 
 # cloudfix-linter
-.vscode
+.vscode/settings.json
+reccos.json
